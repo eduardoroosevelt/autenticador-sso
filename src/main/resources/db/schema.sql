@@ -98,3 +98,8 @@ CREATE TABLE IF NOT EXISTS oauth2_client_registration (
   issuer_uri VARCHAR(500) DEFAULT NULL,
   client_name VARCHAR(200) NOT NULL
 );
+
+insert into oauth2_client_registration (registration_id, client_id, client_secret, scopes, authorization_uri, token_uri, user_info_uri, user_name_attribute, issuer_uri, client_name) values ('google', 'your-google-client-id', 'your-google-client-secret', 'openid,email,profile', 'https://accounts.google.com/o/oauth2/v2/auth', 'https://oauth2.googleapis.com/token', 'https://www.googleapis.com/oauth2/v3/userinfo', 'sub', 'https://accounts.google.com', 'Google');
+
+insert into users (username, password, enabled) values ('user1', '123', true);
+insert into authorities (username, authority) values ('user1', 'ROLE_USER');
