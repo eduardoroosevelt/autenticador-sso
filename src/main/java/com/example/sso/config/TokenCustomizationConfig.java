@@ -10,12 +10,12 @@ import org.springframework.security.oauth2.server.authorization.token.OAuth2Toke
 @Configuration
 public class TokenCustomizationConfig {
   @Bean
-  public OAuth2TokenCustomizer<JwtEncodingContext> accessTokenCustomizer() {
-    return new AccessTokenCustomizer();
-  }
-
-  @Bean
-  public OAuth2TokenCustomizer<JwtEncodingContext> idTokenCustomizer() {
-    return new IdTokenCustomizer();
+  public OAuth2TokenCustomizer<JwtEncodingContext> jwtTokenCustomizer() {
+    AccessTokenCustomizer accessTokenCustomizer = new AccessTokenCustomizer();
+    IdTokenCustomizer idTokenCustomizer = new IdTokenCustomizer();
+    return context -> {
+      accessTokenCustomizer.customize(context);
+      idTokenCustomizer.customize(context);
+    };
   }
 }
